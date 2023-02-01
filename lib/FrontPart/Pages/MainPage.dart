@@ -1,10 +1,12 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, unused_local_variable,, prefer_const_literals_to_create_immutables, non_constant_identifier_names
+import 'package:app/Tools/NoBehavior.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get/get.dart';
 import '../../BackPart/Get/drawing.dart';
 import '../../BackPart/Get/uisetting.dart';
 import '../../Tools/AppbarCustom.dart';
+import '../UI/MainUI.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({
@@ -52,7 +54,7 @@ class _MainPageState extends State<MainPage> {
                     lefticonname: Ionicons.add_outline,
                     righticonname: Ionicons.add_outline,
                   ),
-                  /*const SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Flexible(
@@ -61,9 +63,10 @@ class _MainPageState extends State<MainPage> {
                           behavior: NoBehavior(),
                           child: LayoutBuilder(
                             builder: ((context, constraint) {
-                              
+                              return UI(context, constraint.maxWidth,
+                                  constraint.maxHeight);
                             }),
-                          ))),*/
+                          ))),
                 ],
               ));
         },

@@ -47,6 +47,8 @@ dependencies:
   hive_listener: 
   # Use this dependencies for set color in appbar.
   status_bar_control:
+  # Use this dependencies for get device size
+  responsive_sizer:
 
 dev_dependencies:
   flutter_test:

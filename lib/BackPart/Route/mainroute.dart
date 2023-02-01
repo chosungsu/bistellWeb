@@ -7,6 +7,9 @@ import 'package:get/get.dart';
 import '../../FrontPart/Pages/MainPage.dart';
 
 class mainroute extends StatefulWidget {
+  ///mainroute
+  ///
+  ///이 곳은 추후 페이지 이동을 가능하게 해주는 라우트 공간이다.
   const mainroute({Key? key}) : super(key: key);
   @override
   State<mainroute> createState() => _mainrouteState();
