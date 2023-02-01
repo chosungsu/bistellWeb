@@ -21,15 +21,15 @@ class MyTheme {
     letterSpacing: 1.5,
   );
 
-  static const TextStyle bigcontentText = TextStyle(
-    color: Colors.white,
+  static TextStyle bigcontentText = TextStyle(
+    color: drawing().textcolor,
     fontSize: 20,
     fontWeight: FontWeight.bold,
     letterSpacing: 1.5,
   );
 
-  static const TextStyle smallcontentText = TextStyle(
-      color: Color(0xffAEABC9),
+  static TextStyle smallcontentText = TextStyle(
+      color: drawing().textcolor,
       fontSize: 15,
       letterSpacing: 1.2,
       fontWeight: FontWeight.w500);

@@ -61,11 +61,12 @@ class _MainPageState extends State<MainPage> {
                       fit: FlexFit.tight,
                       child: ScrollConfiguration(
                           behavior: NoBehavior(),
-                          child: LayoutBuilder(
-                            builder: ((context, constraint) {
-                              return UI(context, constraint.maxWidth,
-                                  constraint.maxHeight);
-                            }),
+                          child: OrientationBuilder(
+                            builder: (context, orientation) {
+                              return orientation == Orientation.landscape
+                                  ? LSUI(context)
+                                  : PRUI(context);
+                            },
                           ))),
                 ],
               ));
