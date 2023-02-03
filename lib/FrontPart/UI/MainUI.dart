@@ -1,5 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'dart:ui';
+
 import 'package:app/Tools/ContainerDesign.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,7 +25,7 @@ LSUI(context) {
               SizedBox(
                 height: height,
                 width: (Get.width - 40) * 0.5,
-                child: ShowModelGraph(height),
+                child: ShowModelGraph(context, height),
               ),
               SizedBox(
                   height: height,
@@ -34,12 +36,12 @@ LSUI(context) {
                       SizedBox(
                         height: height * 0.5,
                         width: (Get.width - 40) * 0.4,
-                        child: AlertWithAnomalyScore(height * 0.5),
+                        child: AlertWithAnomalyScore(context, height * 0.5),
                       ),
                       SizedBox(
                         height: height * 0.4,
                         width: (Get.width - 40) * 0.4,
-                        child: ModelSetting(height * 0.4),
+                        child: ModelSetting(context, height * 0.4),
                       )
                     ],
                   ))
@@ -69,7 +71,7 @@ PRUI(context) {
                 SizedBox(
                   height: height * 0.6,
                   width: (Get.width - 40),
-                  child: ShowModelGraph(height * 0.6),
+                  child: ShowModelGraph(context, height * 0.6),
                 ),
                 const Spacer(),
                 Row(
@@ -78,12 +80,12 @@ PRUI(context) {
                     SizedBox(
                       height: height * 0.3,
                       width: (Get.width - 40) * 0.45,
-                      child: AlertWithAnomalyScore(height * 0.3),
+                      child: AlertWithAnomalyScore(context, height * 0.3),
                     ),
                     SizedBox(
                       height: height * 0.3,
                       width: (Get.width - 40) * 0.45,
-                      child: ModelSetting(height * 0.3),
+                      child: ModelSetting(context, height * 0.3),
                     )
                   ],
                 )
@@ -96,7 +98,7 @@ PRUI(context) {
   );
 }
 
-ShowModelGraph(maxHeight) {
+ShowModelGraph(context, maxHeight) {
   return SizedBox(
     height: maxHeight,
     child: Column(
@@ -111,21 +113,28 @@ ShowModelGraph(maxHeight) {
             child: SizedBox(
           height: maxHeight - 52,
           child: Center(
-            child: Text(
-              '공간구성ex) 현재 작업공정을 실시간 모델에 적용한 그래프를 보여주고 구간 클릭시 shap으로 해당구간 분석을 띄움',
-              maxLines: 3,
-              style: MyTheme.bigcontentText,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.visible,
+              child: ScrollConfiguration(
+            behavior: ScrollConfiguration.of(context).copyWith(dragDevices: {
+              PointerDeviceKind.touch,
+              PointerDeviceKind.mouse,
+            }, scrollbars: false),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              physics: const ScrollPhysics(),
+              child: Text(
+                '공간구성ex) 현재 작업공정을 실시간 모델에 적용한 그래프를 보여주고 구간 클릭시 shap으로 해당구간 분석을 띄움',
+                style: MyTheme.bigcontentText,
+                textAlign: TextAlign.center,
+              ),
             ),
-          ),
+          )),
         ))
       ],
     ),
   );
 }
 
-AlertWithAnomalyScore(maxHeight) {
+AlertWithAnomalyScore(context, maxHeight) {
   return SizedBox(
     height: maxHeight,
     child: Column(
@@ -140,21 +149,28 @@ AlertWithAnomalyScore(maxHeight) {
             child: SizedBox(
           height: maxHeight - 52,
           child: Center(
-            child: Text(
-              '공간구성ex) 이상치 스코어로 현재 상태를 최저이상대비 퍼센트로 알림',
-              maxLines: 3,
-              style: MyTheme.bigcontentText,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.visible,
+              child: ScrollConfiguration(
+            behavior: ScrollConfiguration.of(context).copyWith(dragDevices: {
+              PointerDeviceKind.touch,
+              PointerDeviceKind.mouse,
+            }, scrollbars: false),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              physics: const ScrollPhysics(),
+              child: Text(
+                '공간구성ex) 이상치 스코어로 현재 상태를 최저이상대비 퍼센트로 알림',
+                style: MyTheme.bigcontentText,
+                textAlign: TextAlign.center,
+              ),
             ),
-          ),
+          )),
         ))
       ],
     ),
   );
 }
 
-ModelSetting(maxHeight) {
+ModelSetting(context, maxHeight) {
   return SizedBox(
     height: maxHeight,
     child: Column(
@@ -169,14 +185,21 @@ ModelSetting(maxHeight) {
             child: SizedBox(
           height: maxHeight - 52,
           child: Center(
-            child: Text(
-              '공간구성ex) 모델 threshold 조작을 비롯 각종 설정값 세팅',
-              maxLines: 3,
-              style: MyTheme.bigcontentText,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.visible,
+              child: ScrollConfiguration(
+            behavior: ScrollConfiguration.of(context).copyWith(dragDevices: {
+              PointerDeviceKind.touch,
+              PointerDeviceKind.mouse,
+            }, scrollbars: false),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              physics: const ScrollPhysics(),
+              child: Text(
+                '공간구성ex) 모델 threshold 조작을 비롯 각종 설정값 세팅',
+                style: MyTheme.bigcontentText,
+                textAlign: TextAlign.center,
+              ),
             ),
-          ),
+          )),
         ))
       ],
     ),

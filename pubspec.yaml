@@ -49,6 +49,8 @@ dependencies:
   status_bar_control:
   # Use this dependencies for get device size
   responsive_sizer:
+  # Use this dependencies for call python model
+  
 
 dev_dependencies:
   flutter_test:
