@@ -48,7 +48,7 @@ class _MainPageState extends State<MainPage> {
               child: Column(
                 children: [
                   const AppBarCustom(
-                    title: 'LOBBY',
+                    title: 'DashBoard',
                     lefticon: false,
                     righticon: false,
                     lefticonname: Ionicons.add_outline,
@@ -68,6 +68,9 @@ class _MainPageState extends State<MainPage> {
                                   : PRUI(context);
                             },
                           ))),
+                  const SizedBox(
+                    height: 50,
+                  ),
                 ],
               ));
         },

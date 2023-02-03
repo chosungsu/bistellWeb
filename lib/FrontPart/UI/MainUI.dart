@@ -10,7 +10,7 @@ import '../../Tools/MyTheme.dart';
 ///
 ///이 레이아웃은 가로모드일 경우 나타나는 UI이다.
 LSUI(context) {
-  double height = Get.height - 80 - Get.statusBarHeight;
+  double height = Get.height - 130 - Get.statusBarHeight;
   return Padding(
     padding: const EdgeInsets.only(left: 20, right: 20),
     child: Column(
@@ -26,28 +26,23 @@ LSUI(context) {
                 child: ShowModelGraph(height),
               ),
               SizedBox(
-                height: height,
-                width: (Get.width - 40) * 0.4,
-                child: ListView(
-                  shrinkWrap: true,
-                  physics: const ScrollPhysics(),
-                  children: [
-                    SizedBox(
-                      height: height * 0.6,
-                      width: (Get.width - 40) * 0.4,
-                      child: AlertWithAnomalyScore(height * 0.6),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    SizedBox(
-                      height: height * 0.6,
-                      width: (Get.width - 40) * 0.4,
-                      child: ModelSetting(height * 0.6),
-                    )
-                  ],
-                ),
-              )
+                  height: height,
+                  width: (Get.width - 40) * 0.4,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: height * 0.5,
+                        width: (Get.width - 40) * 0.4,
+                        child: AlertWithAnomalyScore(height * 0.5),
+                      ),
+                      SizedBox(
+                        height: height * 0.4,
+                        width: (Get.width - 40) * 0.4,
+                        child: ModelSetting(height * 0.4),
+                      )
+                    ],
+                  ))
             ],
           ),
         )
@@ -60,7 +55,7 @@ LSUI(context) {
 ///
 ///이 레이아웃은 세로모드일 경우 나타나는 UI이다.
 PRUI(context) {
-  double height = Get.height - 80 - Get.statusBarHeight;
+  double height = Get.height - 130 - Get.statusBarHeight;
   return SingleChildScrollView(
     physics: const ScrollPhysics(),
     child: Padding(
@@ -109,7 +104,7 @@ ShowModelGraph(maxHeight) {
       children: [
         SizedBox(
           height: 30,
-          child: Text('공정 그래프', style: MyTheme.bigcontentText),
+          child: Text('Graph', style: MyTheme.bigcontentText),
         ),
         const Spacer(),
         ContainerDesign(
@@ -117,7 +112,8 @@ ShowModelGraph(maxHeight) {
           height: maxHeight - 52,
           child: Center(
             child: Text(
-              'ex) 현재 작업공정을\n 모델에 적용한 그래프',
+              '공간구성ex) 현재 작업공정을 실시간 모델에 적용한 그래프를 보여주고 구간 클릭시 shap으로 해당구간 분석을 띄움',
+              maxLines: 3,
               style: MyTheme.bigcontentText,
               textAlign: TextAlign.center,
               overflow: TextOverflow.visible,
@@ -137,7 +133,7 @@ AlertWithAnomalyScore(maxHeight) {
       children: [
         SizedBox(
           height: 30,
-          child: Text('현황', style: MyTheme.bigcontentText),
+          child: Text('Alarm', style: MyTheme.bigcontentText),
         ),
         const Spacer(),
         ContainerDesign(
@@ -145,7 +141,8 @@ AlertWithAnomalyScore(maxHeight) {
           height: maxHeight - 52,
           child: Center(
             child: Text(
-              'ex) 이상치 스코어로\n 주의/경고 단계로 알림',
+              '공간구성ex) 이상치 스코어로 현재 상태를 최저이상대비 퍼센트로 알림',
+              maxLines: 3,
               style: MyTheme.bigcontentText,
               textAlign: TextAlign.center,
               overflow: TextOverflow.visible,
@@ -165,7 +162,7 @@ ModelSetting(maxHeight) {
       children: [
         SizedBox(
           height: 30,
-          child: Text('설정', style: MyTheme.bigcontentText),
+          child: Text('Settings', style: MyTheme.bigcontentText),
         ),
         const Spacer(),
         ContainerDesign(
@@ -173,7 +170,8 @@ ModelSetting(maxHeight) {
           height: maxHeight - 52,
           child: Center(
             child: Text(
-              'ex) 모델 threshold 조작',
+              '공간구성ex) 모델 threshold 조작을 비롯 각종 설정값 세팅',
+              maxLines: 3,
               style: MyTheme.bigcontentText,
               textAlign: TextAlign.center,
               overflow: TextOverflow.visible,
