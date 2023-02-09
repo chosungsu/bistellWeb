@@ -7,8 +7,8 @@ import 'package:status_bar_control/status_bar_control.dart';
 import '../../Tools/MyTheme.dart';
 
 class drawing extends GetxController {
-  Color backgroundcolor = Colors.white;
-  Color textcolor = Colors.black;
+  Color backgroundcolor = MyTheme.colorwhite;
+  Color chartbackgroundcolor = MyTheme.chartcolor;
 
   void setBGColor(int what) {
     ///setBGColor
@@ -16,26 +16,11 @@ class drawing extends GetxController {
     ///바탕색을 결정
 
     if (what == 0) {
-      backgroundcolor = MyTheme.colorWhite;
+      backgroundcolor = MyTheme.colorwhite;
     } else {
       backgroundcolor = MyTheme.colorblack;
     }
     StatusBarControl.setColor(backgroundcolor, animated: true);
-    update();
-    notifyChildrens();
-  }
-
-  void setTextColor(int what) {
-    ///setTextColor
-    ///
-    ///글자 크기를 결정
-
-    if (what == 0) {
-      textcolor = MyTheme.colorblack;
-    } else {
-      textcolor = MyTheme.colorWhite;
-    }
-
     update();
     notifyChildrens();
   }

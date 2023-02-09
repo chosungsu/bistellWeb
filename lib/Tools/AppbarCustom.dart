@@ -32,7 +32,7 @@ class AppBarCustom extends StatelessWidget {
       return GetBuilder<drawing>(
           builder: (_) => SafeArea(
               child: SizedBox(
-                  height: 60,
+                  height: 50,
                   child: Padding(
                     padding: const EdgeInsets.only(
                         left: 20, right: 20, top: 5, bottom: 5),
@@ -45,14 +45,15 @@ class AppBarCustom extends StatelessWidget {
                                 children: [
                                   GetBuilder<uisetting>(
                                       builder: (_) => ContainerDesign(
+                                            color: MyTheme.chartcolor,
                                             child: GestureDetector(
                                                 onTap: () {},
                                                 child: Container(
                                                   padding: EdgeInsets.zero,
                                                   child: Icon(
                                                     lefticonname,
-                                                    size: 30,
-                                                    color: draw.textcolor,
+                                                    size: 25,
+                                                    color: MyTheme.colortext,
                                                   ),
                                                 )),
                                           ))
@@ -78,14 +79,15 @@ class AppBarCustom extends StatelessWidget {
                                 ? Row(
                                     children: [
                                       ContainerDesign(
+                                        color: MyTheme.chartcolor,
                                         child: GestureDetector(
                                             onTap: () {},
                                             child: Container(
                                               padding: EdgeInsets.zero,
                                               child: Icon(
                                                 righticonname,
-                                                size: 30,
-                                                color: draw.textcolor,
+                                                size: 25,
+                                                color: MyTheme.colortext,
                                               ),
                                             )),
                                       )

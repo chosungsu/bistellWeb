@@ -1,36 +1,53 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import '../BackPart/Get/drawing.dart';
 
 class MyTheme {
-  static Color colorWhite = Colors.white;
-  static Color colorblack = Colors.black;
+  static Color colorwhite = Colors.grey.shade300;
+  static Color colorblack = Colors.black45;
+  static Color chartcolor = Colors.white;
+  static Color redcolortext = Colors.redAccent;
+  static Color colortext = Colors.blueAccent;
+  static Color insidetext = Colors.black;
+  static Color summarytext = Colors.white;
+  static Color iconcolor = Colors.white;
 
-  static const TextStyle splashTitle = TextStyle(
-    color: Colors.blue,
+  static TextStyle splashTitle = TextStyle(
+    color: colortext,
     fontSize: 30,
     fontWeight: FontWeight.bold,
     letterSpacing: 1.5,
   );
 
   static TextStyle appbarTitle = TextStyle(
-    color: drawing().textcolor,
-    fontSize: 25,
-    fontWeight: FontWeight.w600,
+    color: colortext,
+    fontSize: 23,
+    fontWeight: FontWeight.bold,
     letterSpacing: 1.5,
   );
 
   static TextStyle bigcontentText = TextStyle(
-    color: drawing().textcolor,
-    fontSize: 20,
+    color: colortext,
+    fontSize: 18,
     fontWeight: FontWeight.bold,
     letterSpacing: 1.5,
   );
 
   static TextStyle smallcontentText = TextStyle(
-      color: drawing().textcolor,
+      color: colorblack,
       fontSize: 15,
       letterSpacing: 1.2,
-      fontWeight: FontWeight.w500);
+      fontWeight: FontWeight.bold);
+
+  static TextStyle insidecontainerText = TextStyle(
+      color: insidetext,
+      fontSize: 15,
+      letterSpacing: 1.2,
+      fontWeight: FontWeight.bold);
+
+  static TextStyle insidesummaryText = TextStyle(
+      color: summarytext,
+      fontSize: 15,
+      letterSpacing: 1.2,
+      fontWeight: FontWeight.bold);
 }

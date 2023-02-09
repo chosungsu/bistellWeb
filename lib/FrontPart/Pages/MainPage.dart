@@ -55,7 +55,7 @@ class _MainPageState extends State<MainPage> {
                     righticonname: Ionicons.add_outline,
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   Flexible(
                       fit: FlexFit.tight,
