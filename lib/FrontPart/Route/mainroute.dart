@@ -4,7 +4,7 @@ import 'package:app/BackPart/Get/drawing.dart';
 import 'package:app/BackPart/Get/uisetting.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../FrontPart/Pages/MainPage.dart';
+import '../Pages/MainPage.dart';
 
 class mainroute extends StatefulWidget {
   ///mainroute

@@ -53,7 +53,8 @@ class AppBarCustom extends StatelessWidget {
                                                   child: Icon(
                                                     lefticonname,
                                                     size: 25,
-                                                    color: MyTheme.colortext,
+                                                    color:
+                                                        MyTheme.bluecolortext,
                                                   ),
                                                 )),
                                           ))
@@ -87,7 +88,7 @@ class AppBarCustom extends StatelessWidget {
                                               child: Icon(
                                                 righticonname,
                                                 size: 25,
-                                                color: MyTheme.colortext,
+                                                color: MyTheme.bluecolortext,
                                               ),
                                             )),
                                       )

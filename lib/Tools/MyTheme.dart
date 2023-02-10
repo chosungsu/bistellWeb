@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, file_names
 
 import 'package:flutter/material.dart';
 
@@ -7,27 +7,35 @@ class MyTheme {
   static Color colorblack = Colors.black45;
   static Color chartcolor = Colors.white;
   static Color redcolortext = Colors.redAccent;
-  static Color colortext = Colors.blueAccent;
+  static Color bluecolortext = Colors.blueAccent;
+  static Color greencolortext = Colors.greenAccent;
   static Color insidetext = Colors.black;
   static Color summarytext = Colors.white;
   static Color iconcolor = Colors.white;
 
   static TextStyle splashTitle = TextStyle(
-    color: colortext,
+    color: bluecolortext,
     fontSize: 30,
     fontWeight: FontWeight.bold,
     letterSpacing: 1.5,
   );
 
   static TextStyle appbarTitle = TextStyle(
-    color: colortext,
+    color: bluecolortext,
     fontSize: 23,
     fontWeight: FontWeight.bold,
     letterSpacing: 1.5,
   );
 
   static TextStyle bigcontentText = TextStyle(
-    color: colortext,
+    color: bluecolortext,
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 1.5,
+  );
+
+  static TextStyle WarningText = TextStyle(
+    color: redcolortext,
     fontSize: 18,
     fontWeight: FontWeight.bold,
     letterSpacing: 1.5,

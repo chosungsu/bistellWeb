@@ -1,83 +1,146 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, file_names
 
 import 'dart:ui';
+import 'package:app/BackPart/Get/logshow.dart';
 import 'package:app/BackPart/Get/uisetting.dart';
 import 'package:app/Tools/ContainerDesign.dart';
 import 'package:app/Tools/Variables.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
+import '../../BackPart/Firebase/Streams.dart';
 import '../../BackPart/Get/drawing.dart';
 import '../../Tools/MyTheme.dart';
+import '../PopUp/Dialog.dart';
 
 final draw = Get.put(drawing());
 final uiset = Get.put(uisetting());
+final logging = Get.put(logshow());
 
-///PageUI0
+///LSUI
 ///
 ///이 레이아웃은 가로모드일 경우 나타나는 UI이다.
 LSUI(context) {
   double height = GetPlatform.isMobile
       ? Get.height - 70 - Get.statusBarHeight
       : Get.height - 110 - Get.statusBarHeight;
-  return Padding(
-    padding: const EdgeInsets.only(left: 20, right: 20),
-    child: Column(
-      children: [
-        SizedBox(
-          height: height,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(
-                height: height,
-                width: (Get.width - 60) * 0.6,
-                child: ShowModelGraph(context, height, (Get.width - 60) * 0.6),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              SizedBox(
-                  height: height,
-                  width: (Get.width - 60) * 0.4,
-                  child: Column(
+  return SingleChildScrollView(
+    physics: const ScrollPhysics(),
+    child: Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20),
+      child: GetPlatform.isWeb
+          ? Column(
+              children: [
+                SizedBox(
+                  height: (height - 20) * 0.7,
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        height: (height - 40) * 0.3,
-                        width: (Get.width - 60) * 0.4,
-                        child: ModelBtn(context, (height - 20) * 0.3,
-                            (Get.width - 60) * 0.4),
+                        height: (height - 20) * 0.7,
+                        width: (Get.width - 60) * 0.6,
+                        child: ShowModelGraph(context, (height - 20) * 0.7,
+                            (Get.width - 60) * 0.6, 'ls'),
                       ),
                       const SizedBox(
-                        height: 20,
+                        width: 20,
                       ),
                       SizedBox(
-                        height: (height - 40) * 0.3,
+                        height: ((height - 20) * 0.7),
                         width: (Get.width - 60) * 0.4,
-                        child: SummaryModel(context, (height - 20) * 0.3,
+                        child: SummaryModel(context, (height - 20) * 0.7,
                             (Get.width - 60) * 0.4),
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      SizedBox(
-                        height: (height - 40) * 0.4,
-                        width: (Get.width - 60) * 0.4,
-                        child: ModelSetting(context, (height - 20) * 0.4,
-                            (Get.width - 60) * 0.4),
-                      )
                     ],
-                  ))
-            ],
-          ),
-        )
-      ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: (height - 20) * 0.3,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: (height - 20) * 0.3,
+                        width: (Get.width - 60) * 0.6,
+                        child: ModelBtn(context, (height - 20) * 0.3,
+                            (Get.width - 40) * 0.6),
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      SizedBox(
+                        height: ((height - 20) * 0.3),
+                        width: (Get.width - 60) * 0.4,
+                        child: ModelSetting(context, ((height - 20) * 0.3),
+                            (Get.width - 60) * 0.4),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            )
+          : Column(
+              children: [
+                SizedBox(
+                  height: (height - 20) * 0.8,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: (height - 20) * 0.8,
+                        width: (Get.width - 60) * 0.6,
+                        child: ShowModelGraph(context, (height - 20) * 0.8,
+                            (Get.width - 60) * 0.6, 'ls'),
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      SizedBox(
+                        height: ((height - 20) * 0.8),
+                        width: (Get.width - 60) * 0.4,
+                        child: SummaryModel(context, ((height - 20) * 0.8),
+                            (Get.width - 60) * 0.4),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: (height - 20) * 0.6,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: (height - 20) * 0.6,
+                        width: (Get.width - 60) * 0.6,
+                        child: ModelBtn(context, (height - 20) * 0.6,
+                            (Get.width - 40) * 0.6),
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      SizedBox(
+                        height: ((height - 20) * 0.6),
+                        width: (Get.width - 60) * 0.4,
+                        child: ModelSetting(context, ((height - 20) * 0.6),
+                            (Get.width - 60) * 0.4),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
     ),
   );
 }
 
-///PageUI1
+///PRUI
 ///
 ///이 레이아웃은 세로모드일 경우 나타나는 UI이다.
 PRUI(context) {
@@ -91,47 +154,94 @@ PRUI(context) {
       child: Column(
         children: [
           SizedBox(
-            height: height,
-            child: Column(
-              children: [
-                SizedBox(
-                  height: height * 0.6,
-                  width: (Get.width - 40),
-                  child:
-                      ShowModelGraph(context, height * 0.6, (Get.width - 40)),
-                ),
-                const Spacer(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      height: height * 0.3,
-                      width: (Get.width - 40) * 0.45,
-                      child: SummaryModel(
-                          context, height * 0.3, (Get.width - 40) * 0.45),
-                    ),
-                    SizedBox(
-                      height: height * 0.3,
-                      width: (Get.width - 40) * 0.45,
-                      child: ModelSetting(
-                          context, height * 0.3, (Get.width - 40) * 0.45),
-                    )
-                  ],
-                )
-              ],
-            ),
-          )
+            height: (height - 40) * 0.6,
+            width: (Get.width - 40),
+            child: ShowModelGraph(
+                context, (height - 40) * 0.6, (Get.width - 40), 'pr'),
+          ),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                height: (height - 40) * 0.4,
+                width: (Get.width - 60) * 0.5,
+                child: SummaryModel(
+                    context, (height - 40) * 0.4, (Get.width - 60) * 0.5),
+              ),
+              const SizedBox(width: 20),
+              SizedBox(
+                height: (height - 40) * 0.4,
+                width: (Get.width - 60) * 0.5,
+                child: ModelSetting(
+                    context, (height - 40) * 0.4, (Get.width - 60) * 0.5),
+              )
+            ],
+          ),
+          const SizedBox(height: 20),
+          SizedBox(
+            height: (height - 40) * 0.4,
+            width: (Get.width - 40),
+            child: ModelBtn(context, (height - 40) * 0.4, (Get.width - 40)),
+          ),
         ],
       ),
     ),
   );
 }
 
-ShowModelGraph(context, maxHeight, maxWidth) {
+ShowModelGraph(context, maxHeight, maxWidth, orientation) {
   return ContainerDesign(
     color: MyTheme.chartcolor,
     child: Column(
       children: [
+        Row(
+          children: [
+            Flexible(
+                fit: FlexFit.tight,
+                child: Text(
+                  '',
+                  style: MyTheme.bigcontentText,
+                  textAlign: TextAlign.start,
+                )),
+            GetBuilder<uisetting>(builder: (_) {
+              return Container(
+                height: 30,
+                width: 50,
+                alignment: Alignment.center,
+                child: GestureDetector(
+                  onTap: () {
+                    StartOrStop();
+                  },
+                  child: ContainerDesign(
+                      color: MyTheme.colorwhite,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                color: MyTheme.redcolortext,
+                                shape: BoxShape.circle),
+                            width: uiset.startorstop ? 10 : 5,
+                            height: uiset.startorstop ? 10 : 5,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                color: MyTheme.bluecolortext,
+                                shape: BoxShape.circle),
+                            width: !uiset.startorstop ? 10 : 5,
+                            height: !uiset.startorstop ? 10 : 5,
+                          )
+                        ],
+                      )),
+                ),
+              );
+            })
+          ],
+        ),
         Expanded(
           child: Container(
             alignment: Alignment.center,
@@ -162,44 +272,59 @@ ModelBtn(context, maxHeight, maxWidth) {
   return ContainerDesign(
     color: MyTheme.chartcolor,
     child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          '작동',
-          style: MyTheme.bigcontentText,
-          textAlign: TextAlign.center,
+        Row(
+          children: [
+            Flexible(
+                fit: FlexFit.tight,
+                child: Text(
+                  '공정로그',
+                  style: MyTheme.bigcontentText,
+                  textAlign: TextAlign.start,
+                )),
+            GestureDetector(
+              onTap: () {
+                ModelBtnDialog();
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                    color: MyTheme.bluecolortext, shape: BoxShape.circle),
+                child: Icon(
+                  AntDesign.question,
+                  size: 18,
+                  color: MyTheme.iconcolor,
+                ),
+              ),
+            )
+          ],
         ),
-        GetBuilder<uisetting>(builder: (_) {
-          return Flexible(
-              fit: FlexFit.tight,
-              child: SizedBox(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      if (uiset.startorstop) {
-                        uiset.setmodelprocess(false);
-                      } else {
-                        uiset.setmodelprocess(true);
-                      }
-                    },
-                    child: ContainerDesign(
-                        color: uiset.startorstop == true
-                            ? MyTheme.colortext
-                            : MyTheme.redcolortext,
-                        child: SizedBox(
-                          width: maxWidth * 0.4,
-                          child: Text(
-                            uiset.startorstop == true ? 'Start' : 'Stop',
-                            style: MyTheme.insidesummaryText,
-                            textAlign: TextAlign.center,
-                          ),
-                        )),
-                  )
-                ],
-              )));
-        })
+        Container(
+          height: 2,
+          color: Colors.black45,
+        ),
+        StreamBuilder<QuerySnapshot>(
+          stream: PageViewStreamParent1(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              PageViewRes1_1(snapshot);
+              return logging.showlist.isEmpty
+                  ? Notin(maxHeight, maxWidth)
+                  : Flexible(
+                      fit: FlexFit.tight,
+                      child: SizedBox(
+                        height: maxHeight,
+                        width: maxWidth,
+                        child: ListShowing(maxHeight, maxWidth),
+                      ));
+            } else if (!snapshot.hasData) {
+              return Notin(maxHeight, maxWidth);
+            }
+            return LinearProgressIndicator(
+              backgroundColor: draw.backgroundcolor,
+              valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
+            );
+          },
+        )
       ],
     ),
   );
@@ -216,10 +341,30 @@ SummaryModel(context, maxHeight, maxWidth) {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            '요약',
-            style: MyTheme.bigcontentText,
-            textAlign: TextAlign.center,
+          Row(
+            children: [
+              Flexible(
+                  fit: FlexFit.tight,
+                  child: Text(
+                    '요약',
+                    style: MyTheme.bigcontentText,
+                    textAlign: TextAlign.start,
+                  )),
+              GestureDetector(
+                onTap: () {
+                  SummaryModelDialog();
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: MyTheme.bluecolortext, shape: BoxShape.circle),
+                  child: Icon(
+                    AntDesign.question,
+                    size: 18,
+                    color: MyTheme.iconcolor,
+                  ),
+                ),
+              )
+            ],
           ),
           GetBuilder<uisetting>(builder: (_) {
             return Flexible(
@@ -229,30 +374,31 @@ SummaryModel(context, maxHeight, maxWidth) {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      maxWidth < 350 && uiset.summarylistnumber == 1
-                          ? GestureDetector(
-                              onTap: () {
-                                uiset.setSummarylistnumber(0);
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    color: MyTheme.colortext,
-                                    shape: BoxShape.circle),
-                                child: Icon(
-                                  Icons.chevron_left,
-                                  size: 20,
-                                  color: MyTheme.iconcolor,
+                      maxWidth < 300 && uiset.summarylistnumber == 1
+                          ? SizedBox(
+                              width: 20,
+                              child: GestureDetector(
+                                onTap: () {
+                                  uiset.setSummarylistnumber(0);
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: MyTheme.bluecolortext,
+                                      shape: BoxShape.circle),
+                                  child: Icon(
+                                    Icons.chevron_left,
+                                    size: 18,
+                                    color: MyTheme.iconcolor,
+                                  ),
                                 ),
-                              ),
-                            )
+                              ))
                           : Container(
                               width: 20,
                             ),
-                      maxWidth < 350
+                      maxWidth < 300
                           ? (uiset.summarylistnumber == 0
                               ? Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Flexible(
                                       flex: 1,
@@ -263,9 +409,9 @@ SummaryModel(context, maxHeight, maxWidth) {
                                       ),
                                     ),
                                     ContainerDesign(
-                                        color: MyTheme.colortext,
+                                        color: MyTheme.greencolortext,
                                         child: SizedBox(
-                                          width: maxWidth * 0.4,
+                                          width: maxWidth * 0.3,
                                           child: Text(
                                             listsummary[0],
                                             style: MyTheme.insidesummaryText,
@@ -275,8 +421,7 @@ SummaryModel(context, maxHeight, maxWidth) {
                                   ],
                                 )
                               : Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Flexible(
                                       flex: 1,
@@ -287,9 +432,9 @@ SummaryModel(context, maxHeight, maxWidth) {
                                       ),
                                     ),
                                     ContainerDesign(
-                                        color: MyTheme.colortext,
+                                        color: MyTheme.greencolortext,
                                         child: SizedBox(
-                                          width: maxWidth * 0.4,
+                                          width: maxWidth * 0.3,
                                           child: Text(
                                             listsummary[1],
                                             style: MyTheme.insidesummaryText,
@@ -302,8 +447,7 @@ SummaryModel(context, maxHeight, maxWidth) {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Flexible(
                                       flex: 1,
@@ -314,7 +458,7 @@ SummaryModel(context, maxHeight, maxWidth) {
                                       ),
                                     ),
                                     ContainerDesign(
-                                        color: MyTheme.colortext,
+                                        color: MyTheme.greencolortext,
                                         child: SizedBox(
                                           width: maxWidth * 0.3,
                                           child: Text(
@@ -329,8 +473,7 @@ SummaryModel(context, maxHeight, maxWidth) {
                                   width: 20,
                                 ),
                                 Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Flexible(
                                       flex: 1,
@@ -341,7 +484,7 @@ SummaryModel(context, maxHeight, maxWidth) {
                                       ),
                                     ),
                                     ContainerDesign(
-                                        color: MyTheme.colortext,
+                                        color: MyTheme.greencolortext,
                                         child: SizedBox(
                                           width: maxWidth * 0.3,
                                           child: Text(
@@ -354,22 +497,24 @@ SummaryModel(context, maxHeight, maxWidth) {
                                 )
                               ],
                             ),
-                      maxWidth < 350 && uiset.summarylistnumber == 0
-                          ? GestureDetector(
-                              onTap: () {
-                                uiset.setSummarylistnumber(1);
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    color: MyTheme.colortext,
-                                    shape: BoxShape.circle),
-                                child: Icon(
-                                  Icons.chevron_right,
-                                  size: 20,
-                                  color: MyTheme.iconcolor,
+                      maxWidth < 300 && uiset.summarylistnumber == 0
+                          ? SizedBox(
+                              width: 20,
+                              child: GestureDetector(
+                                onTap: () {
+                                  uiset.setSummarylistnumber(1);
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: MyTheme.bluecolortext,
+                                      shape: BoxShape.circle),
+                                  child: Icon(
+                                    Icons.chevron_right,
+                                    size: 18,
+                                    color: MyTheme.iconcolor,
+                                  ),
                                 ),
-                              ),
-                            )
+                              ))
                           : Container(
                               width: 20,
                             ),
@@ -387,10 +532,16 @@ ModelSetting(context, maxHeight, maxWidth) {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            '설정',
-            style: MyTheme.bigcontentText,
-            textAlign: TextAlign.center,
+          Row(
+            children: [
+              Flexible(
+                  fit: FlexFit.tight,
+                  child: Text(
+                    '설정',
+                    style: MyTheme.bigcontentText,
+                    textAlign: TextAlign.start,
+                  )),
+            ],
           ),
           GetBuilder<uisetting>(builder: (_) {
             return Flexible(
@@ -411,7 +562,7 @@ ModelSetting(context, maxHeight, maxWidth) {
                             ),
                           ),
                           ContainerDesign(
-                              color: MyTheme.colortext,
+                              color: MyTheme.greencolortext,
                               child: SizedBox(
                                 width: maxWidth * 0.3,
                                 child: Text(
@@ -434,7 +585,7 @@ ModelSetting(context, maxHeight, maxWidth) {
                             ),
                           ),
                           ContainerDesign(
-                              color: MyTheme.colortext,
+                              color: MyTheme.greencolortext,
                               child: SizedBox(
                                 width: maxWidth * 0.3,
                                 child: Text(
@@ -449,6 +600,71 @@ ModelSetting(context, maxHeight, maxWidth) {
                   ),
                 ));
           })
+        ],
+      ));
+}
+
+ListShowing(maxHeight, maxWidth) {
+  return ListView.builder(
+      physics: const ScrollPhysics(),
+      scrollDirection: Axis.vertical,
+      shrinkWrap: false,
+      itemCount: logging.showlist.length,
+      itemBuilder: ((context, index) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Flexible(
+                    fit: FlexFit.tight,
+                    child: Text(
+                      logging.showlist[index].title,
+                      style: logging.showlist[index].title == 'Stop'
+                          ? MyTheme.WarningText
+                          : MyTheme.bigcontentText,
+                    )),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  logging.showlist[index].date,
+                  style: MyTheme.smallcontentText,
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+          ],
+        );
+      }));
+}
+
+Notin(maxHeight, maxWidth) {
+  return Flexible(
+      fit: FlexFit.tight,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Icon(
+            AntDesign.frowno,
+            color: Colors.orange,
+            size: 30,
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Text(
+            '로그가 비어있습니다.',
+            textAlign: TextAlign.center,
+            style: MyTheme.insidecontainerText,
+          ),
         ],
       ));
 }

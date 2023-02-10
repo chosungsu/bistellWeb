@@ -42,7 +42,7 @@ class _MainPageState extends State<MainPage> {
   Widget MainBody(BuildContext context) {
     return SizedBox(
       child: GetBuilder<drawing>(
-        builder: (controller) {
+        builder: (_) {
           return Container(
               color: draw.backgroundcolor,
               child: Column(

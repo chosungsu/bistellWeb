@@ -49,7 +49,13 @@ dependencies:
   status_bar_control:
   # Use this dependencies for get device size
   responsive_sizer:
-  # Use this dependencies for call python model
+  # Use this dependencies for firebase connect
+  cloud_firestore: 
+  firebase_core:
+  firebase_core_web:
+  firebase_storage: 
+  # Use this dependencies for dateformat
+  intl: 
   
 
 dev_dependencies:
