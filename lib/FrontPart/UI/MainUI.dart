@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, file_names
 
+import 'dart:async';
 import 'dart:ui';
 import 'package:app/BackPart/Get/logshow.dart';
 import 'package:app/BackPart/Get/uisetting.dart';
@@ -28,14 +29,11 @@ LSUI(context) {
   return SingleChildScrollView(
     physics: const ScrollPhysics(),
     child: Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20),
-      child: GetPlatform.isWeb
-          ? Column(
-              children: [
-                SizedBox(
-                  height: (height - 20) * 0.7,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: GetPlatform.isWeb
+            ? Row(
+                children: [
+                  Column(
                     children: [
                       SizedBox(
                         height: (height - 20) * 0.7,
@@ -44,51 +42,43 @@ LSUI(context) {
                             (Get.width - 60) * 0.6, 'ls'),
                       ),
                       const SizedBox(
-                        width: 20,
+                        height: 20,
                       ),
-                      SizedBox(
-                        height: ((height - 20) * 0.7),
-                        width: (Get.width - 60) * 0.4,
-                        child: SummaryModel(context, (height - 20) * 0.7,
-                            (Get.width - 60) * 0.4),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  height: (height - 20) * 0.3,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
                       SizedBox(
                         height: (height - 20) * 0.3,
                         width: (Get.width - 60) * 0.6,
                         child: ModelBtn(context, (height - 20) * 0.3,
                             (Get.width - 40) * 0.6),
                       ),
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: ((height - 20) * 0.5),
+                        width: (Get.width - 60) * 0.4,
+                        child: SummaryModel(context, (height - 20) * 0.5,
+                            (Get.width - 60) * 0.4),
+                      ),
                       const SizedBox(
-                        width: 20,
+                        height: 20,
                       ),
                       SizedBox(
-                        height: ((height - 20) * 0.3),
+                        height: ((height - 20) * 0.5),
                         width: (Get.width - 60) * 0.4,
-                        child: ModelSetting(context, ((height - 20) * 0.3),
+                        child: ModelSetting(context, ((height - 20) * 0.5),
                             (Get.width - 60) * 0.4),
                       ),
                     ],
-                  ),
-                ),
-              ],
-            )
-          : Column(
-              children: [
-                SizedBox(
-                  height: (height - 20) * 0.8,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  )
+                ],
+              )
+            : Row(
+                children: [
+                  Column(
                     children: [
                       SizedBox(
                         height: (height - 20) * 0.8,
@@ -97,46 +87,40 @@ LSUI(context) {
                             (Get.width - 60) * 0.6, 'ls'),
                       ),
                       const SizedBox(
-                        width: 20,
+                        height: 20,
                       ),
-                      SizedBox(
-                        height: ((height - 20) * 0.8),
-                        width: (Get.width - 60) * 0.4,
-                        child: SummaryModel(context, ((height - 20) * 0.8),
-                            (Get.width - 60) * 0.4),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  height: (height - 20) * 0.6,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
                       SizedBox(
                         height: (height - 20) * 0.6,
                         width: (Get.width - 60) * 0.6,
                         child: ModelBtn(context, (height - 20) * 0.6,
                             (Get.width - 40) * 0.6),
                       ),
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: ((height - 20) * 0.7),
+                        width: (Get.width - 60) * 0.4,
+                        child: SummaryModel(context, ((height - 20) * 0.7),
+                            (Get.width - 60) * 0.4),
+                      ),
                       const SizedBox(
-                        width: 20,
+                        height: 20,
                       ),
                       SizedBox(
-                        height: ((height - 20) * 0.6),
+                        height: ((height - 20) * 0.7),
                         width: (Get.width - 60) * 0.4,
-                        child: ModelSetting(context, ((height - 20) * 0.6),
+                        child: ModelSetting(context, ((height - 20) * 0.7),
                             (Get.width - 60) * 0.4),
                       ),
                     ],
-                  ),
-                ),
-              ],
-            ),
-    ),
+                  )
+                ],
+              )),
   );
 }
 
@@ -278,7 +262,7 @@ ModelBtn(context, maxHeight, maxWidth) {
             Flexible(
                 fit: FlexFit.tight,
                 child: Text(
-                  '공정로그',
+                  '로그기록',
                   style: MyTheme.bigcontentText,
                   textAlign: TextAlign.start,
                 )),
@@ -286,14 +270,10 @@ ModelBtn(context, maxHeight, maxWidth) {
               onTap: () {
                 ModelBtnDialog();
               },
-              child: Container(
-                decoration: BoxDecoration(
-                    color: MyTheme.bluecolortext, shape: BoxShape.circle),
-                child: Icon(
-                  AntDesign.question,
-                  size: 18,
-                  color: MyTheme.iconcolor,
-                ),
+              child: Icon(
+                SimpleLineIcons.question,
+                size: 20,
+                color: MyTheme.bluecolortext,
               ),
             )
           ],
@@ -332,10 +312,6 @@ ModelBtn(context, maxHeight, maxWidth) {
 
 SummaryModel(context, maxHeight, maxWidth) {
   //maxWidth가 350이하일 때 이 뷰를 쪼개서 화살표로 뷰 넘기는 액션 선택
-  listsummary = [
-    '1',
-    '12',
-  ];
   return ContainerDesign(
       color: MyTheme.chartcolor,
       child: Column(
@@ -354,14 +330,10 @@ SummaryModel(context, maxHeight, maxWidth) {
                 onTap: () {
                   SummaryModelDialog();
                 },
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: MyTheme.bluecolortext, shape: BoxShape.circle),
-                  child: Icon(
-                    AntDesign.question,
-                    size: 18,
-                    color: MyTheme.iconcolor,
-                  ),
+                child: Icon(
+                  SimpleLineIcons.question,
+                  size: 20,
+                  color: MyTheme.bluecolortext,
                 ),
               )
             ],
@@ -413,7 +385,7 @@ SummaryModel(context, maxHeight, maxWidth) {
                                         child: SizedBox(
                                           width: maxWidth * 0.3,
                                           child: Text(
-                                            listsummary[0],
+                                            uiset.key.toString(),
                                             style: MyTheme.insidesummaryText,
                                             textAlign: TextAlign.center,
                                           ),
@@ -436,7 +408,7 @@ SummaryModel(context, maxHeight, maxWidth) {
                                         child: SizedBox(
                                           width: maxWidth * 0.3,
                                           child: Text(
-                                            listsummary[1],
+                                            uiset.threshold.toString(),
                                             style: MyTheme.insidesummaryText,
                                             textAlign: TextAlign.center,
                                           ),
@@ -462,7 +434,7 @@ SummaryModel(context, maxHeight, maxWidth) {
                                         child: SizedBox(
                                           width: maxWidth * 0.3,
                                           child: Text(
-                                            listsummary[0],
+                                            uiset.key.toString(),
                                             style: MyTheme.insidesummaryText,
                                             textAlign: TextAlign.center,
                                           ),
@@ -488,7 +460,7 @@ SummaryModel(context, maxHeight, maxWidth) {
                                         child: SizedBox(
                                           width: maxWidth * 0.3,
                                           child: Text(
-                                            listsummary[1],
+                                            uiset.threshold.toString(),
                                             style: MyTheme.insidesummaryText,
                                             textAlign: TextAlign.center,
                                           ),
@@ -527,81 +499,276 @@ SummaryModel(context, maxHeight, maxWidth) {
 }
 
 ModelSetting(context, maxHeight, maxWidth) {
-  return ContainerDesign(
-      color: MyTheme.chartcolor,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Flexible(
-                  fit: FlexFit.tight,
-                  child: Text(
-                    '설정',
-                    style: MyTheme.bigcontentText,
-                    textAlign: TextAlign.start,
-                  )),
-            ],
-          ),
-          GetBuilder<uisetting>(builder: (_) {
-            return Flexible(
-                fit: FlexFit.tight,
-                child: SizedBox(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Flexible(
-                            flex: 1,
-                            child: Text(
-                              'Key',
-                              style: MyTheme.insidecontainerText,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          ContainerDesign(
-                              color: MyTheme.greencolortext,
-                              child: SizedBox(
-                                width: maxWidth * 0.3,
-                                child: Text(
-                                  '1',
-                                  style: MyTheme.insidesummaryText,
-                                  textAlign: TextAlign.center,
-                                ),
-                              ))
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Flexible(
-                            flex: 1,
-                            child: Text(
-                              'Threshold',
-                              style: MyTheme.insidecontainerText,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          ContainerDesign(
-                              color: MyTheme.greencolortext,
-                              child: SizedBox(
-                                width: maxWidth * 0.3,
-                                child: Text(
-                                  '5',
-                                  style: MyTheme.insidesummaryText,
-                                  textAlign: TextAlign.center,
-                                ),
-                              ))
-                        ],
-                      ),
-                    ],
+  Timer? timer;
+  return StatefulBuilder(builder: ((context, setState) {
+    return ContainerDesign(
+        color: MyTheme.chartcolor,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Flexible(
+                    fit: FlexFit.tight,
+                    child: Text(
+                      '설정',
+                      style: MyTheme.bigcontentText,
+                      textAlign: TextAlign.start,
+                    )),
+                GestureDetector(
+                  onTap: () {
+                    ModelSettingDialog();
+                  },
+                  child: Icon(
+                    SimpleLineIcons.question,
+                    size: 20,
+                    color: MyTheme.bluecolortext,
                   ),
-                ));
-          })
-        ],
-      ));
+                ),
+                Container(
+                  width: 5,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    //모델에 적용하게 로직 구성
+                  },
+                  child: Icon(
+                    MaterialIcons.published_with_changes,
+                    size: 20,
+                    color: MyTheme.redcolortext,
+                  ),
+                )
+              ],
+            ),
+            GetBuilder<uisetting>(builder: (_) {
+              return Flexible(
+                  fit: FlexFit.tight,
+                  child: SizedBox(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(
+                              flex: 1,
+                              child: Text(
+                                'Key',
+                                style: MyTheme.insidecontainerText,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            ContainerDesign(
+                                color: MyTheme.greencolortext,
+                                child: SizedBox(
+                                    width: maxWidth * 0.3,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Flexible(
+                                            flex: 1,
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                if (uiset.key == 1) {
+                                                  uiset.setKey(1);
+                                                } else {
+                                                  uiset.key = uiset.key - 1;
+                                                  uiset.setKey(uiset.key);
+                                                }
+                                              },
+                                              onLongPress: () {
+                                                timer = Timer.periodic(
+                                                    const Duration(
+                                                        milliseconds: 50),
+                                                    (timer) {
+                                                  setState(() {
+                                                    if (uiset.key == 1) {
+                                                      uiset.setKey(1);
+                                                    } else {
+                                                      uiset.key = uiset.key - 1;
+                                                      uiset.setKey(uiset.key);
+                                                    }
+                                                  });
+                                                });
+                                              },
+                                              onLongPressEnd: (_) {
+                                                timer?.cancel();
+                                              },
+                                              child: Text(
+                                                '-',
+                                                style:
+                                                    MyTheme.insidesummaryText,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )),
+                                        Flexible(
+                                          flex: 1,
+                                          child: Text(
+                                            uiset.key.toString(),
+                                            style: MyTheme.insidesummaryText,
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                        Flexible(
+                                            flex: 1,
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                if (uiset.key == 6) {
+                                                  uiset.setKey(6);
+                                                } else {
+                                                  uiset.key = uiset.key + 1;
+                                                  uiset.setKey(uiset.key);
+                                                }
+                                              },
+                                              onLongPress: () {
+                                                timer = Timer.periodic(
+                                                    const Duration(
+                                                        milliseconds: 50),
+                                                    (timer) {
+                                                  setState(() {
+                                                    if (uiset.key == 6) {
+                                                      uiset.setKey(6);
+                                                    } else {
+                                                      uiset.key = uiset.key + 1;
+                                                      uiset.setKey(uiset.key);
+                                                    }
+                                                  });
+                                                });
+                                              },
+                                              onLongPressEnd: (_) {
+                                                timer?.cancel();
+                                              },
+                                              child: Text(
+                                                '+',
+                                                style:
+                                                    MyTheme.insidesummaryText,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )),
+                                      ],
+                                    )))
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(
+                              flex: 1,
+                              child: Text(
+                                'Threshold',
+                                style: MyTheme.insidecontainerText,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            ContainerDesign(
+                                color: MyTheme.greencolortext,
+                                child: SizedBox(
+                                    width: maxWidth * 0.3,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Flexible(
+                                            flex: 1,
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                if (uiset.threshold == 1) {
+                                                  uiset.setThreshold(1);
+                                                } else {
+                                                  uiset.threshold =
+                                                      uiset.threshold - 1;
+                                                  uiset.setThreshold(
+                                                      uiset.threshold);
+                                                }
+                                              },
+                                              onLongPress: () {
+                                                timer = Timer.periodic(
+                                                    const Duration(
+                                                        milliseconds: 50),
+                                                    (timer) {
+                                                  setState(() {
+                                                    if (uiset.threshold == 1) {
+                                                      uiset.setThreshold(1);
+                                                    } else {
+                                                      uiset.threshold =
+                                                          uiset.threshold - 1;
+                                                      uiset.setThreshold(
+                                                          uiset.threshold);
+                                                    }
+                                                  });
+                                                });
+                                              },
+                                              onLongPressEnd: (_) {
+                                                timer?.cancel();
+                                              },
+                                              child: Text(
+                                                '-',
+                                                style:
+                                                    MyTheme.insidesummaryText,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )),
+                                        Flexible(
+                                          flex: 1,
+                                          child: Text(
+                                            uiset.threshold.toString(),
+                                            style: MyTheme.insidesummaryText,
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                        Flexible(
+                                            flex: 1,
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                if (uiset.threshold == 100) {
+                                                  uiset.setThreshold(100);
+                                                } else {
+                                                  uiset.threshold =
+                                                      uiset.threshold + 1;
+                                                  uiset.setThreshold(
+                                                      uiset.threshold);
+                                                }
+                                              },
+                                              onLongPress: () {
+                                                timer = Timer.periodic(
+                                                    const Duration(
+                                                        milliseconds: 50),
+                                                    (timer) {
+                                                  setState(() {
+                                                    if (uiset.threshold ==
+                                                        100) {
+                                                      uiset.setThreshold(100);
+                                                    } else {
+                                                      uiset.threshold =
+                                                          uiset.threshold + 1;
+                                                      uiset.setThreshold(
+                                                          uiset.threshold);
+                                                    }
+                                                  });
+                                                });
+                                              },
+                                              onLongPressEnd: (_) {
+                                                timer?.cancel();
+                                              },
+                                              child: Text(
+                                                '+',
+                                                style:
+                                                    MyTheme.insidesummaryText,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )),
+                                      ],
+                                    )))
+                          ],
+                        ),
+                      ],
+                    ),
+                  ));
+            })
+          ],
+        ));
+  }));
 }
 
 ListShowing(maxHeight, maxWidth) {

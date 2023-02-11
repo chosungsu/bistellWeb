@@ -132,6 +132,60 @@ SummaryModelDialog() {
   ));
 }
 
+ModelSettingDialog() {
+  Get.dialog(LayoutBuilder(
+    builder: (context, constraint) {
+      return OSDialog(
+        '설정방법 소개드릴게요.',
+        SizedBox(
+          width: constraint.maxWidth * 0.5,
+          height: constraint.maxWidth * 0.5 < 300
+              ? constraint.maxHeight * 0.4
+              : constraint.maxHeight * 0.2,
+          child: Column(children: [
+            Container(
+              height: 2,
+              color: Colors.black45,
+            ),
+            Flexible(
+                fit: FlexFit.tight,
+                child: SingleChildScrollView(
+                  child: Text(
+                    'Key값의 범위(1~6)내에서 자유롭게 설정하시면 되고, Threshold값의 범위(1~100)내에서 자유롭게 설정하시면 됩니다.',
+                    style: MyTheme.smallcontentText,
+                    textAlign: TextAlign.start,
+                  ),
+                )),
+            Container(
+              height: 2,
+              color: Colors.black45,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+                width: constraint.maxWidth * 0.5 * 0.3,
+                child: GestureDetector(
+                  onTap: () {
+                    GetBack();
+                  },
+                  child: ContainerDesign(
+                      color: MyTheme.colorwhite,
+                      child: SizedBox(
+                        child: Text(
+                          '닫기',
+                          style: MyTheme.insidecontainerText,
+                          textAlign: TextAlign.center,
+                        ),
+                      )),
+                ))
+          ]),
+        ),
+      );
+    },
+  ));
+}
+
 StartOrStop() {
   Get.dialog(LayoutBuilder(
     builder: (context, constraint) {

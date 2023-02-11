@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 class uisetting extends GetxController {
   int pagenumber = 0;
   int summarylistnumber = 0;
+  int key = 1;
+  int threshold = 1;
   bool startorstop = false;
 
   void setPagenumber(int what) {
@@ -33,6 +35,26 @@ class uisetting extends GetxController {
     ///model start/stop 결정
 
     startorstop = what;
+    update();
+    notifyChildrens();
+  }
+
+  void setKey(int what) {
+    ///setmodelprocess
+    ///
+    ///model start/stop 결정
+
+    key = what;
+    update();
+    notifyChildrens();
+  }
+
+  void setThreshold(int what) {
+    ///setmodelprocess
+    ///
+    ///model start/stop 결정
+
+    threshold = what;
     update();
     notifyChildrens();
   }
