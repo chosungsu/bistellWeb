@@ -21,43 +21,6 @@ void main() async {
           appId: '1:417460115007:web:d2418302bcc6b285b60a8a',
           messagingSenderId: '417460115007',
           projectId: 'anomaly-detector-78c11'));
-  /*if (GetPlatform.isWeb) {
-    if (Get.width < 1000) {
-      await Firebase.initializeApp(
-          name: 'Detector',
-          options: const FirebaseOptions(
-              apiKey: 'AIzaSyAZYwT4HVx0093UsQTY7z168QZjHLQ-qbs',
-              appId: '1:417460115007:web:d2418302bcc6b285b60a8a',
-              messagingSenderId: '417460115007',
-              projectId: 'anomaly-detector-78c11'));
-    } else {
-      await Firebase.initializeApp(
-          name: 'Detect System',
-          options: const FirebaseOptions(
-              apiKey: 'AIzaSyAZYwT4HVx0093UsQTY7z168QZjHLQ-qbs',
-              appId: '1:417460115007:web:d2418302bcc6b285b60a8a',
-              messagingSenderId: '417460115007',
-              projectId: 'anomaly-detector-78c11'));
-    }
-  } else {
-    if (Get.width < 1000) {
-      await Firebase.initializeApp(
-          name: 'Detector',
-          options: const FirebaseOptions(
-              apiKey: 'AIzaSyAZYwT4HVx0093UsQTY7z168QZjHLQ-qbs',
-              appId: '1:417460115007:web:d2418302bcc6b285b60a8a',
-              messagingSenderId: '417460115007',
-              projectId: 'anomaly-detector-78c11'));
-    } else {
-      await Firebase.initializeApp(
-          name: 'Detect System',
-          options: const FirebaseOptions(
-              apiKey: 'AIzaSyAZYwT4HVx0093UsQTY7z168QZjHLQ-qbs',
-              appId: '1:417460115007:web:d2418302bcc6b285b60a8a',
-              messagingSenderId: '417460115007',
-              projectId: 'anomaly-detector-78c11'));
-    }
-  }*/
 
   ///Hive.initFlutter()는 사용자 디바이스에 직접 저장되는 sqlite 형식의 저장방식을 선언하는 코드
   ///Hive.openBox('Here name')은 Hive의 박스이름을 지정하는 코드
